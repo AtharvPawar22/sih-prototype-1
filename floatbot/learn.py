@@ -8,7 +8,7 @@ st.set_page_config(layout="wide")
 
 IMAGE_URL = "https://images.pexels.com/photos/932638/pexels-photo-932638.jpeg?auto=compress&cs=tinysrgb&w=1920"
 
-# 🔹 Background Styling
+
 st.markdown(f"""
 <style>
 .stApp {{
@@ -38,7 +38,7 @@ header[data-testid="stHeader"] {{
 </style>
 """, unsafe_allow_html=True)
 
-# 🔹 Sidebar & Title
+
 st.write("""
 # FLOATCHAT
 AI-Powered Conversational Interface for ARGO Ocean Data Discovery and Visualization.
@@ -47,7 +47,7 @@ st.sidebar.image("logo.png", width=200)
 st.sidebar.title("OPTIONS")
 page = st.sidebar.radio("Go to:", ["Home", "Explore Data", "About"])
 
-# 🔹 Text Information
+
 information = """
 Temperature: Measures the temperature of the ocean at various depths,
 which is crucial for understanding climate change and marine ecosystems.
@@ -59,20 +59,19 @@ Ocean Currents: Data on the movement of ocean water, which influences weather pa
 
 query = st.chat_input("Enter your query about ocean data:")
 
-# 🔹 Streaming Text Function
+
 def steam_data():
     for sentence in information.strip().splitlines():
         if sentence.strip():
             yield sentence + "  \n"
             time.sleep(0.3)
 
-# 🔹 Scatter Plot Function
 def plot_scatter_map():
-    map_path = "arabian_sea.png"  # Place your map in same folder
+    map_path = "arabian_sea.png" 
     img = mpimg.imread(map_path)
     height, width = img.shape[:2]
 
-    # Random points
+
     num_points = 50
     x = np.random.uniform(0, width, num_points)
     y = np.random.uniform(0, height, num_points)
@@ -83,7 +82,6 @@ def plot_scatter_map():
     ax.axis('off')
     st.pyplot(fig)
 
-# 🔹 When user enters query
 if query:
-    st.write_stream(steam_data())  # First show streaming text
-    plot_scatter_map()             # Then show scatter chart
+    st.write_stream(steam_data())  
+    plot_scatter_map()            
